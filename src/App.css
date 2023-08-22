@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+/* Home.css */
+
+/* Navbar styling */
+.navbar-transparent {
+  background-color: transparent;
+  padding: 15px 0;
+  box-shadow: none;
+}
+
+.navbar-brand {
+  color: black;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.nav-link {
+  color: black; /* Change the text color to black */
+  font-size: 18px;
+  margin: 0 15px;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #ffc107;
+}
+
