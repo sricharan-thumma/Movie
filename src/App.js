@@ -74,7 +74,7 @@ function App() {
       
       <Navbar expand="lg" className="navbar-transparent">
         <Container>
-          <Navbar.Brand href="#home">Z-Fasion</Navbar.Brand>
+          <Navbar.Brand href="#home">Z-Fasio</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="justify-content-end">
             <Nav fill variant="pills" className="ml-auto">
