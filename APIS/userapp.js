@@ -41,6 +41,19 @@ Userapp.get('/getusers',expressAsyncHandler(async(request,response)=>{
     let users=await usercollection.find().toArray()
     response.send({message:'all users',payload:users})
 }));
+Userapp.get('/getusers/:id',expressAsyncHandler(async(request,response)=>{
+    let pid=request.params.id;
+    let usercollection=request.app.get("usercollection");
+    let user=await usercollection.findOne({username:pid})
+    if(user==null)
+    {
+        response.send('user not existed')
+    }
+    else{
+        response.send({message:'user found',payload:user})
+    }
+}));
+
 Userapp.post('/login',expressAsyncHandler(async(request,response)=>{
     let usercollection=request.app.get("usercollection")
     //user credintials fron client
@@ -89,21 +102,85 @@ expressAsyncHandler(async(request,response)=>{
 }));
 
 // Add this route to your Express API
-Userapp.post('/update-user', expressAsyncHandler(async (request, response) => {
+Userapp.post('/update-user', upload.single("photo"), expressAsyncHandler(async (request, response) => {
     const usercollection = request.app.get("usercollection");
-    const updatedUser = request.body;
-  
+    const { username, email, city } = JSON.parse(request.body.userObj);
+    
     try {
+      const updatedUser = {
+        email,
+        city,
+        profileImg: request.file ? request.file.path : null,
+      };
+
       await usercollection.updateOne(
-        { username: updatedUser.username },
-        { $set: { email: updatedUser.email, city: updatedUser.city } }
+        { username },
+        { $set: updatedUser }
       );
       
       response.send({ message: "User details updated successfully" });
     } catch (error) {
       response.status(500).send({ message: "An error occurred while updating user details" });
     }
+}));
+
+Userapp.post('/add-to-cart', expressAsyncHandler(async (request, response) => {
+    try {
+        const usercollection = request.app.get("usercollection");
+       const productcollection=request.app.get("productcollection")
+        const { productobj, userobj } = request.body;
+
+        // Check if the sender and receiver exist in the tutorcollection
+        const product = await productcollection.findOne({ _id: productobj._id });
+        const user = await usercollection.findOne({ username: userobj.username });
+
+        if (!user) {
+            return response.status(404).send({ message: "Sender or receiver not found" });
+        }
+
+        // Check if the sender has already sent a request to the receiver
+        if (!user.Cart) {
+            user.Cart = [];
+        }
+        
+        const productIdsInCart = user.Cart.map(item => item._id);
+        if (productIdsInCart.includes(productobj._id)) {
+            return response.status(400).send({ message: "product already exists in the cart" });
+        }
+
+        // Add the receiver's ID to the sender's sentRequests array
+        user.Cart.push(productobj);
+        
+
+       
+        await usercollection.updateOne({ username: userobj.username }, { $set: { Cart: user.Cart } });
+
+        return response.send({ message: "Added successfully" });
+    } catch (error) {
+        console.error(error);
+        return response.status(500).send({ message: "Internal server error" });
+    }
+}));
+
+Userapp.get('/get-cart', expressAsyncHandler(async (request, response) => {
+    try {
+      const usercollection = request.app.get('usercollection');
+      const {username} = request.body; // Assuming you have a middleware to validate the JWT token
+  
+      // Find the user by username and retrieve their cart items
+      const user = await usercollection.findOne({ username });
+      
+      if (!user || !user.Cart) {
+        return response.status(404).send({ message: 'Cart not found' });
+      }
+  
+      return response.send({ cart: user.Cart });
+    } catch (error) {
+      console.error(error);
+      return response.status(500).send({ message: 'Internal server error' });
+    }
   }));
+  
   
 
 module.exports=Userapp; 

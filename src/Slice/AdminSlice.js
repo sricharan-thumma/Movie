@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 //make http post req to login user
 
-export const userLogin=createAsyncThunk('loginuser',async(usercred,thunkApi)=>{
-    let response=await axios.post('http://localhost:4000/user-api/login',usercred);
+export const adminLogin=createAsyncThunk('loginadmin',async(usercred,thunkApi)=>{
+    let response=await axios.post('http://localhost:4000/admin-api/login',usercred);
     let data=response.data;
     
     
@@ -14,14 +14,15 @@ export const userLogin=createAsyncThunk('loginuser',async(usercred,thunkApi)=>{
     if(data.message==='login success')
     {
         //local storage token
-        localStorage.setItem("token",data.payload)
+        localStorage.setItem("admintoken",data.payload)
         // navigate('/userdashboard')
-        return data.userObj;
+        return data.adminObj;
         
     }
     else if(data.status===200)
     {
         alert("Invalid details")
+        
     }
     
     if(data.message==="Invalid username" || data.message==="Invalid password"){
@@ -30,31 +31,30 @@ export const userLogin=createAsyncThunk('loginuser',async(usercred,thunkApi)=>{
 
     }
 })
-export const updateUserDetails = createAsyncThunk('updateUser', async (updatedUser, thunkApi) => {
+export const updateAdminDetails = createAsyncThunk('updateAdmin', async (updatedAdmin, thunkApi) => {
     try {
-        const response = await axios.post('http://localhost:4000/user-api/update-user', updatedUser);
+        const response = await axios.post('http://localhost:4000/admin-api/update-admin', updatedAdmin);
         return response.data;
     } catch (error) {
         return thunkApi.rejectWithValue(error.response.data);
     }
 });
+const storedAdminToken = localStorage.getItem('admintoken');
 
-const storedUserToken = localStorage.getItem('token');
-
-let userSlice=createSlice({
-    name:'user',
+let adminSlice=createSlice({
+    name:'admin',
     initialState:{
-        userobj:{},
-        isError:!!storedUserToken,
-        isSuccess:!!storedUserToken,
+        adminobj:{},
+        isError:!!storedAdminToken,
+        isSuccessadmin:!!storedAdminToken,
         isLoading:false,
         errMsg:''
     },
     reducers:{
-        clearLoginStatus:(state)=>{
+        clearAdminLoginStatus:(state)=>{
             // console.log("he;;       ")
-            state.isSuccess=false;
-            state.userobj=null;
+            state.isSuccessadmin=false;
+            state.adminobj=null;
             state.isError=false;
             state.errMsg='';
             // console.log(state)
@@ -64,26 +64,26 @@ let userSlice=createSlice({
     extraReducers:{
 
         //  track life cycle promise returned by createasyncTHunk function
-        [userLogin.pending]:(state,action)=>{
+        [adminLogin.pending]:(state,action)=>{
             state.isLoading=true;
         },
 
-        [userLogin.fulfilled]:(state,action)=>{
-            state.userobj=action.payload;
+        [adminLogin.fulfilled]:(state,action)=>{
+            state.adminobj=action.payload;
             state.isLoading=false;
             state.isError=false;
-            state.isSuccess=true;
+            state.isSuccessadmin=true;
             state.errMsg="b"
         },
-        [userLogin.rejected]:(state,action)=>{
+        [adminLogin.rejected]:(state,action)=>{
             state.isError=true;
             state.isLoading=false;
-            state.isSuccess=false;
+            state.isSuccessadmin=false;
             state.errMsg='error occured'
         }
     }
 })
 
 
-export const {clearLoginStatus}=userSlice.actions;
-export default userSlice.reducer;
+export const {clearAdminLoginStatus}=adminSlice.actions;
+export default adminSlice.reducer;

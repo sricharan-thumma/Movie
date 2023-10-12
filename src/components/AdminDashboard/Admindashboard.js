@@ -3,11 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import { useSelector } from 'react-redux';
-import './userdashboard.css';
+import './Admindashboard.css';
 import { useNavigate, Outlet } from 'react-router-dom';
 import { FaHome, FaUser, FaUsers, FaInfoCircle } from 'react-icons/fa'; // Import icons from react-icons
 
-function Userdashboard() {
+function Admindashboard() {
   const { userobj, isSuccess } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
@@ -15,20 +15,19 @@ function Userdashboard() {
     <div className="profile-container-nav">
       <div className="profile-sidebar">
         <Nav className="flex-column">
-        <Nav.Item>
-            <Nav.Link onClick={() => navigate('/userdashboard/cart')}>
-              <FaUser /> Cart
-            </Nav.Link>
-          </Nav.Item>
           <Nav.Item>
             <Nav.Link onClick={() => navigate('/dashboard/profileparent/tutorhome')}>
-              <FaHome /> Orders
+              <FaHome /> Home
             </Nav.Link>
           </Nav.Item>
-          
+          <Nav.Item>
+            <Nav.Link onClick={() => navigate('/admindashboard/addproducts')}>
+              <FaUser /> Add Products
+            </Nav.Link>
+          </Nav.Item>
           <Nav.Item>
             <Nav.Link onClick={() => navigate('/admindashboard/viewproducts')}>
-              <FaUsers /> Analytics
+              <FaUsers /> View products
             </Nav.Link>
           </Nav.Item>
           <Nav.Item></Nav.Item>
@@ -47,4 +46,4 @@ function Userdashboard() {
   );
 }
 
-export default Userdashboard;
+export default Admindashboard;

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope, faCity, faLock, faFileImage } from '@fortawesome/free-solid-svg-icons';
 import './Signup.css';
 
-function Signup() {
+function AdminSignup() {
   const {
     register,
     handleSubmit,
@@ -31,7 +31,7 @@ function Signup() {
     formData.append('photo', img);
 
     axios
-      .post('http://localhost:4000/user-api/create-user', formData)
+      .post('http://localhost:4000/admin-api/create-user', formData)
       .then((response) => {
         alert(response.data.message);
         if (response.data.message === 'new user created') {
@@ -116,4 +116,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default AdminSignup;
