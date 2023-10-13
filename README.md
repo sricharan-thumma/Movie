@@ -24,3 +24,12 @@ Home Page:
 
 SignUp Page:
 ![Signuppage](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/5890407a-0d7f-4055-928e-32b784a93ce3)
+
+
+Login Page :
+![LoginPage](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/69ac9a27-70ff-40d3-a099-b12eedcc8a3e)
+
+
+Admin Page to add products :
+
+![admin page to add products](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/e81faafa-dda4-4bd8-b5cb-a5adabcbc61c)
