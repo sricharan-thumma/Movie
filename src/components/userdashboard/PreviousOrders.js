@@ -4,9 +4,10 @@ import './PreviousOrders.css';
 
 function PreviousOrders() {
   const { userobj } = useSelector((state) => state.user);
-  let prevorderquantity = userobj.Orders[0].quantity;
 
-  if (userobj && userobj.Orders && userobj.Orders.length > 2) {
+  if (userobj && userobj.Orders && userobj.Orders.length > 0) {
+    let prevorderquantity = userobj.Orders[0].quantity;
+
     const previousOrders = userobj.Orders.slice(prevorderquantity);
 
     const spendingCategories = {};
