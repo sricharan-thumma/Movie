@@ -1,51 +1,98 @@
-/* cart.css */
+
 .cart-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    margin: 20px;
   }
   
-  .cart-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+  h1 {
+    font-size: 24px;
   }
   
   .cart-item {
-    text-align: center;
-    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
     padding: 10px;
-    width: 200px;
+    border: 1px solid #ccc;
     background-color: #f9f9f9;
   }
   
-  .cart-item img {
-    max-width: 100%;
+  .cart-item-image img {
+    width: 100px;
     height: auto;
+  }
+  
+  .cart-item-details {
+    flex: 1;
+    margin-left: 20px;
+  }
+  
+  .cart-item-details h2 {
+    font-size: 20px;
+  }
+  
+  
+.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100px;
+    padding: 5px;
+  }
+  
+  .quantity button {
+    background-color: #f0f0f0;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+  }
+  
+  .quantity button:hover {
+    background-color: #ddd;
+  }
+  
+  .quantity span {
+    font-size: 16px;
+    font-weight: bold;
+    width: 30px;
+    text-align: center;
+  }
+  
+  
+  .remove {
+    margin-left: auto;
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
   }
   
   .billing-summary {
     margin-top: 20px;
-    border: 1px solid #ccc;
     padding: 20px;
-    width: 50%;
+    border: 1px solid #ccc;
     background-color: #f9f9f9;
-    text-align: center;
+  }
+  
+  .summary-item {
+    margin-bottom: 10px;
+    font-size: 16px;
   }
   
   .buy-now-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
+    background-color: green;
+    color: white;
     padding: 10px 20px;
-    margin-top: 10px;
+    border: none;
     cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .buy-now-button:hover {
-    background-color: #0056b3;
   }
   

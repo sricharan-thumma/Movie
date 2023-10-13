@@ -25,7 +25,7 @@ const ViewProducts = () => {
     formState: { errors },
   } = useForm();
 
-  //get navigate functon to navigate programatically
+  
   let navigate = useNavigate();
 
 

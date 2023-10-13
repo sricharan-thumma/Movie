@@ -1,47 +1,46 @@
-/* Updated CSS for the profile container */
-  /* personalinfo.css */
+
 
   .profile-container-nav {
     display: flex;
-    height: 100vh; /* Adjust the height as needed */
+    height: 100vh; 
   }
   
   .profile-sidebar {
-    flex: 0 0 250px; /* Set the width of the sidebar */
-    background-color: #333; /* Set the background color */
-    color: #fff; /* Set text color */
+    flex: 0 0 250px; 
+    background-color: #333; 
+    color: #fff; 
     padding: 20px;
-    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    overflow-y: auto; 
   }
   
   .profile-sidebar a {
     text-decoration: none;
-    color: #fff; /* Link text color */
+    color: #fff;
   }
   
   .profile-sidebar a:hover {
-    color: #007bff; /* Link text color on hover */
+    color: #007bff;
   }
   
   .profile-content {
-    flex: 1; /* Take up remaining horizontal space */
+    flex: 1; 
     padding: 20px;
-    overflow-y: auto; /* Enable vertical scrolling if content overflows */
-    background-color: #f0f0f0; /* Set the background color of the content area */
+    overflow-y: auto; 
+    background-color: #f0f0f0;
   }
   
     .profile-content .container {
-      max-width: 100%; /* Ensure the content container expands to the available space */
+      max-width: 100%; 
     }
     
     
     
     
     .profile-card {
-      background-color: #f9f9f9; /* Background color for the profile card */
-      border: 1px solid #ddd; /* Border around the card */
+      background-color: #f9f9f9; 
+      border: 1px solid #ddd; 
       padding: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for the card */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
     }
     
     .profile-title {
@@ -61,37 +60,35 @@
     }
     
     .edit-button {
-      background-color: #007bff; /* Button background color */
-      color: #fff; /* Button text color */
+      background-color: #007bff;
+      color: #fff; 
       border: none;
       padding: 10px 20px;
       cursor: pointer;
-      transition: background-color 0.3s; /* Smooth transition for background color */
+      transition: background-color 0.3s; 
     }
     
     .edit-button:hover {
-      background-color: #0056b3; /* Background color on hover */
-    }
+      background-color: #0056b3; }
     
-    /* Media query for responsiveness (adjust as needed) */
+    
     @media (max-width: 768px) {
       .profile-sidebar {
-        width: 100%; /* Make the sidebar full width on smaller screens */
+        width: 100%; 
       }
     }
 
-    /* Custom styles for nav-item */
-/* Custom styles for Nav.Item elements */
+    
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 10px; /* Increase the gap between icon and text */
+  gap: 10px; 
   font-size: 18px;
-  margin-bottom: 16px;  /* Increase text size */
+  margin-bottom: 16px; 
 }
 
-/* Custom styles for icons within Nav.Item */
+
 .nav-item svg {
-  font-size: 24px; /* Increase icon size */
+  font-size: 24px;
 }
 

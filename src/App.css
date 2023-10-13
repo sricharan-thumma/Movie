@@ -37,9 +37,7 @@
   }
 }
 
-/* Home.css */
 
-/* Navbar styling */
 .navbar-transparent {
   background-color: transparent;
   padding: 15px 0;
@@ -53,7 +51,7 @@
 }
 
 .nav-link {
-  color: black; /* Change the text color to black */
+  color: black; 
   font-size: 18px;
   margin: 0 15px;
   transition: color 0.2s;

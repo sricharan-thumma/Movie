@@ -25,7 +25,7 @@ function Login() {
     dispatch(userLogin(userCredObj));
   };
   if (isSuccess === true) {
-    navigate('/Userdashboard');
+    navigate('/productslist');
   }
 
   const adminlog = () => {

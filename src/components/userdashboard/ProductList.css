@@ -1,43 +1,39 @@
 .accordion-container {
     flex: 1;
     padding: 20px;
-   /* Background color for the accordion */
-    color: #fff; /* Text color in the accordion */
+   
+    color: #fff; 
     font-weight: bold;
-    width: 20%; /* Make the text bold */
+    width: 20%; 
   }
   .product-list{
     width: 100%;
   }
 
   .form-check-input {
-     /* Dark background color */
-    border: 2px solid black; /* White border */
+    
+    border: 2px solid black; 
   }
 
-  /* Style the checkboxes */
-/* Reduce the maximum width of the accordion */
+ 
 .accordion {
-    max-width: 200px; /* Adjust the value as needed */
+    max-width: 200px; 
   }
 
-  /* Set up a flex container for the page content */
+ 
 .products-container {
     display: flex;
   }
   
-  /* Style for the accordion */
   
-  
-  /* Style for the product container */
   .product-container {
-    flex: 1; /* Expand and take available space */
-    padding: 20px; /* Add some spacing */
-    width: 800px; /* Set the maximum width to your desired value */
-    margin: 0 auto; /* Center the content horizontally */
+    flex: 1; 
+    padding: 20px; 
+    width: 800px; 
+    margin: 0 auto; 
   }
   
-  /* Additional styling for your product items can go here */
+ 
   
   
   .product {
@@ -45,8 +41,8 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 10px; /* Add margin to separate products */
-  width: calc(33.33% - 20px); /* Calculate width for 3 products per row */
+  margin: 10px; 
+  width: calc(33.33% - 20px); 
   box-sizing: border-box;
 }
 
@@ -61,18 +57,18 @@
 
 .productname {
   font-weight: bold;
-  font-size: 14px; /* Decrease the font size */
+  font-size: 14px; 
   margin: 5px 0;
 }
 
 brand {
   font-weight: bold;
-  font-size: 12px; /* Decrease the font size */
+  font-size: 12px; 
 }
 
 .price {
   font-weight: bold;
-  font-size: 16px; /* Decrease the font size */
+  font-size: 16px; 
   margin: 5px 0;
 }
 
@@ -84,7 +80,7 @@ brand {
 }
 
 .button {
-  background-color: #007bff;
+  background-color: #333;;
   color: white;
   font-weight: bold;
   border: none;

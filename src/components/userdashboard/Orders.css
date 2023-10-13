@@ -26,7 +26,7 @@
     flex: 0 0 120px; 
     margin-right: 20px; 
      
-    
+
     vertical-align: inherit;
   }
   
@@ -37,6 +37,10 @@
   .delivered-label {
     font-weight: bold;
     margin-bottom: 5px;
+  }
+
+  .dark-green-text {
+    color: #006400; 
   }
   
   

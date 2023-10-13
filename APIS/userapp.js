@@ -56,7 +56,7 @@ Userapp.get('/getusers/:id',expressAsyncHandler(async(request,response)=>{
 
 Userapp.post('/login',expressAsyncHandler(async(request,response)=>{
     let usercollection=request.app.get("usercollection")
-    //user credintials fron client
+    
     let usercred=request.body
     //find the user in DB
     let userofDB=await usercollection.findOne({username:usercred.username})
@@ -65,14 +65,14 @@ Userapp.post('/login',expressAsyncHandler(async(request,response)=>{
         //alert("invalid details")
     }
     else{
-        //comparing given password and actual password
+        
         let status=await bcryptjs.compare(usercred.password,userofDB.password)
         //if pass not matched
         if(status==false){
             response.send({message:"Invalid password"})
         }
         else{`  `
-            //create token
+            
 
             let token=jwt.sign({username:userofDB.username},"abcedef",{expiresIn:60})
             //send token
@@ -101,7 +101,7 @@ expressAsyncHandler(async(request,response)=>{
     }
 }));
 
-// Add this route to your Express API
+
 Userapp.post('/update-user', upload.single("photo"), expressAsyncHandler(async (request, response) => {
     const usercollection = request.app.get("usercollection");
     const { username, email, city } = JSON.parse(request.body.userObj);
@@ -130,7 +130,7 @@ Userapp.post('/add-to-cart', expressAsyncHandler(async (request, response) => {
        const productcollection=request.app.get("productcollection")
         const { productobj, userobj } = request.body;
 
-        // Check if the sender and receiver exist in the tutorcollection
+        
         const product = await productcollection.findOne({ _id: productobj._id });
         const user = await usercollection.findOne({ username: userobj.username });
 
@@ -138,7 +138,7 @@ Userapp.post('/add-to-cart', expressAsyncHandler(async (request, response) => {
             return response.status(404).send({ message: "Sender or receiver not found" });
         }
 
-        // Check if the sender has already sent a request to the receiver
+        
         if (!user.Cart) {
             user.Cart = [];
         }
@@ -148,7 +148,7 @@ Userapp.post('/add-to-cart', expressAsyncHandler(async (request, response) => {
             return response.status(400).send({ message: "product already exists in the cart" });
         }
 
-        // Add the receiver's ID to the sender's sentRequests array
+        
         user.Cart.push(productobj);
         
 
@@ -165,9 +165,9 @@ Userapp.post('/add-to-cart', expressAsyncHandler(async (request, response) => {
 Userapp.get('/get-cart', expressAsyncHandler(async (request, response) => {
     try {
       const usercollection = request.app.get('usercollection');
-      const {username} = request.body; // Assuming you have a middleware to validate the JWT token
+      const {username} = request.body; 
   
-      // Find the user by username and retrieve their cart items
+      
       const user = await usercollection.findOne({ username });
       
       if (!user || !user.Cart) {
@@ -186,23 +186,23 @@ Userapp.get('/get-cart', expressAsyncHandler(async (request, response) => {
         const usercollection = request.app.get("usercollection");
         const { productobj,username } = request.body;
 
-        // Find the tutor document
+    
         const user = await usercollection.findOne({ username: username });
 
         if (!user) {
             return response.status(404).send({ message: "user not found" });
         }
 
-        // Check if the student's username is in the tutor's Requests array
+    
         const itemIndex = user.Cart.findIndex(item => item._id === productobj._id);
         if (itemIndex === -1) {
             return response.status(400).send({ message: "item not found" });
         }
 
-        // Remove the student's username from the Requests array
+        
         user.Cart.splice(itemIndex, 1);
 
-        // Update the tutor document
+    
         await usercollection.updateOne({ username: username }, { $set: { Cart: user.Cart } });
 
         return response.send({ message: "Removed successfully",payload:user.Cart});
@@ -224,18 +224,18 @@ Userapp.post('/buy-now', expressAsyncHandler(async (request, response) => {
         return response.status(404).send({ message: "User not found" });
       }
   
-      // Check if the user has an Orders array. If not, create it.
+      
       if (!user.Orders) {
         user.Orders = [];
       }
       
-      // Push the items from cartItems into Orders
+    
       user.Orders.push(...cartItems);
   
-      // Empty the cartItems array
+      
       user.cartItems = [];
   
-      // Update the user document in the database
+      
       await usercollection.updateOne(
         { username: username },
         { $set: { Orders: user.Orders, Cart: user.cartItems } }
@@ -246,6 +246,33 @@ Userapp.post('/buy-now', expressAsyncHandler(async (request, response) => {
       console.error(error);
       return response.status(500).send({ message: "Internal server error" });
     }
+  }));
+
+
+  Userapp.post('/update-quantity-in-cart', expressAsyncHandler(async (request, response) => {
+    
+    const { productobj, username, quantity } = request.body;
+  
+
+    const usercollection=request.app.get("usercollection")
+    const user = await usercollection.findOne({ username });
+  
+    if (!user) {
+      return response.status(400).send({ message: 'User not found' });
+    }
+  
+    
+    const cartItem = user.Cart.find(item => item._id.toString() === productobj._id.toString());
+  
+    if (!cartItem) {
+      return response.status(400).send({ message: 'Item not found in the cart' });
+    }
+  
+
+    cartItem.quantity = quantity;
+  
+    
+    response.send({ message: 'Quantity updated successfully', payload: user.Cart });
   }));
   
 

@@ -1,0 +1,30 @@
+userdashboard.css
+.profile-card {
+    width: 12rem;
+    margin: 50px auto;
+    text-align: center;
+    background-color: #f7f7f7;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom:20px;
+  }
+  
+  .profile-pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 10px auto;
+    display: block;
+  }
+  
+  .profile-info {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .edit-button {
+    margin-top: 20px;
+  }
+  
+  

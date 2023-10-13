@@ -1,12 +1,11 @@
-//create router to handle admin api requests
+
 const exp = require('express')
 const expressAsyncHandler = require('express-async-handler')
 const adminApp = exp.Router()
 
-//import bcryptjs for password hashing
 const bcryptjs = require('bcryptjs')
 
-//import jsonwebtoken to create web token
+
 const jwt = require('jsonwebtoken')
 
 var cloudinary=require("cloudinary").v2
@@ -32,44 +31,44 @@ const cloudinaryStorage=new CloudinaryStorage({
 
 var upload=multer({storage:cloudinaryStorage});
 
-//to extract body of request obj(is a middleware)
+
 adminApp.use(exp.json())
 
 
 adminApp.post('/login',expressAsyncHandler(async(request,response)=>{
   let admincollection=request.app.get("admincollection")
-  //user credintials fron client
+
   let usercred=request.body
-  //find the user in DB
+  
   let userofDB=await admincollection.findOne({username:usercred.username})
   if(userofDB==null){
       response.send({message:"Invalid username",status:200})
-      //alert("invalid details")
+      
   }
   else{
-      //comparing given password and actual password
+      
       let status=await bcryptjs.compare(usercred.password,userofDB.password)
-      //if pass not matched
+      
       if(status==false){
           response.send({message:"Invalid password"})
       }
       else{
-          //create token
+          
 
           let token=jwt.sign({username:userofDB.username},"abcedef",{expiresIn:60})
-          //send token
+      
           response.send({message:"login success",payload:token,userObj:userofDB})
       }
   }
 }));
 
 
-//create a route to '/create-admin'
+
 adminApp.post('/create-user',
 
 upload.single("photo"),
 expressAsyncHandler(async(request,response)=>{
-    //console.log(request.file.path);
+    
     let newUser=JSON.parse(request.body.userObj);
     let admincollection=request.app.get("admincollection")
     let existinguser=await admincollection.findOne({username:newUser.username})
@@ -86,5 +85,4 @@ expressAsyncHandler(async(request,response)=>{
     }
 }));
 
-//export adminApp
 module.exports = adminApp

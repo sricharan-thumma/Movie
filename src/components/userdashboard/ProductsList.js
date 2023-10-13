@@ -6,11 +6,12 @@ import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import Form from 'react-bootstrap/Form';
 import './ProductList.css';
+import { useNavigate } from "react-router-dom";
 
 function ProductsList() {
   const [products, setProducts] = useState([]);
   const { userobj } = useSelector((state) => state.user);
-
+    const navigate=useNavigate();
   const [categoryFilters, setCategoryFilters] = useState({
     Men: false,
     Women: false,
@@ -62,12 +63,17 @@ function ProductsList() {
         userobj: userobj,
       })
       .then((response) => {
-        alert("Added successfully");
+         alert("Added successfully");
+        navigate('/userdashboard/cart')
       })
       .catch((error) => {
         console.error('Error occurred:', error);
       });
   };
+
+  const Gotoproduct = (product) => {
+    navigate(`/product/${product.productname}`)
+  }
 
   return (
     <div className="products-container">
@@ -90,13 +96,13 @@ function ProductsList() {
           </Accordion.Item>
         </Accordion>
       </div>
-      <div className="products-list">
+      
         <Container className="w-85">
           <div className="row">
             {filteredProducts.length > 0
               ? filteredProducts.map((product) => (
                   <div key={product.id} className="product col-md-4 p-4">
-                    <img className="image" src={product.imgurl} alt="Product image" />
+                    <img className="image" src={product.imgurl} alt="Product image" style={{ width: '100%' }}/>
                     <div className="middle">
                       <h5 className="productname">{product.productname}</h5>
                       <h4 className="brand">{product.Brand}</h4>
@@ -105,6 +111,7 @@ function ProductsList() {
                         <Button className="button" onClick={() => AddtoCart(product)}>
                           Add to Cart
                         </Button>
+                        
                       </div>
                     </div>
                   </div>
@@ -117,16 +124,17 @@ function ProductsList() {
                       <h4 className="brand">{product.Brand}</h4>
                       <h6 className="price">₹{product.price}</h6>
                       <div className="button-container">
-                        <Button className="button" onClick={() => AddtoCart(product)}>
+                        <Button className="button m-auto" onClick={() => AddtoCart(product)}>
                           Add to Cart
                         </Button>
+                        
                       </div>
                     </div>
                   </div>
                 ))}
           </div>
         </Container>
-      </div>
+      
     </div>
   );
 }

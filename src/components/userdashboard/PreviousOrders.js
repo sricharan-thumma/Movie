@@ -1,11 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import './PreviousOrders.css';
-import { Card } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import './UserProfile.css'
 
-function UserProfile() {
+function PreviousOrders() {
   const { userobj } = useSelector((state) => state.user);
   let prevorderquantity = userobj.Orders[0].quantity;
 
@@ -31,22 +28,7 @@ function UserProfile() {
 
     return (
       <div>
-        <Card className="profile-card">
-        <Card.Body>
-          <Card.Title className="profile-info">Username: {userobj.username}</Card.Title>
-
-          <img className="profile-pic" src={userobj.profileImg} alt="Profile" width="100%" height="100%" />
-
-          <Card.Text className="profile-info">Email: {userobj.email}</Card.Text>
-          <Card.Text className="profile-info">City: {userobj.city}</Card.Text>
-
-          <Button variant="primary" className="edit-button" >
-            Edit Details
-          </Button>
-        </Card.Body>
-      </Card>
-
-       <div className="summary-container ">
+       <div className="summary-container">
   <div className="data-table-container">
     <h3 className='mt-3'>Shopping Analytics</h3>
     <table className="data-table spending-categories">
@@ -86,10 +68,32 @@ function UserProfile() {
 </div>
 
 
-        
+        <h2>Order History</h2>
+        <ul>
+          {previousOrders.map((order, index) => (
+            <li key={index} className="order-item">
+              <div className="order-image">
+                <img src={order.imgurl} alt={order.name} width="150%" height="100%" />
+              </div>
+              <div className="order-details">
+                <p className="delivered-label text-success">
+                  <i className="fa fa-check" aria-hidden="true"></i> <h5>Order Delivered</h5>
+                </p>
+
+                <p className="order-id">Order ID : {order._id}</p>
+                <p>Price : ₹{order.price}</p>
+                <p>Quantity : {order.quantity}</p>
+
+                <p className="order-total">Total Price: ₹{order.quantity * order.price + 50}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     );
-  } 
+  } else {
+    return <div>No previous orders available.</div>;
+  }
 }
 
-export default UserProfile;
+export default PreviousOrders;

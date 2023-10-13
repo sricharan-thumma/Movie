@@ -1,68 +1,106 @@
-// Cart.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import './Cart.css'
+import './Cart.css';
+import { useNavigate } from 'react-router-dom';
+
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const { userobj } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  const [totalItems, setTotalItems] = useState(0);
 
   useEffect(() => {
-    // Fetch tutor's existing details and set the initial state
+    
     axios
       .get(`http://localhost:4000/user-api/getusers/${userobj.username}`)
       .then((response) => {
-        console.log(userobj)
         const userDetails = response.data.payload;
         const CartArray = userDetails.Cart || [];
 
-        setCartItems(CartArray);
+        const updatedCart = CartArray.map((item) => ({
+          ...item,
+          quantity: !isNaN(item.quantity) && item.quantity > 0 ? parseInt(item.quantity) : 1,
+        }));
+
+        setCartItems(updatedCart);
+        setTotalItems(updatedCart.reduce((total, item) => total + item.quantity, 0));
       })
       .catch((error) => {
-        console.error('Error fetching tutor data:', error);
+        console.error('Error fetching user data:', error);
       });
   }, [userobj.username]);
 
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + parseFloat(item.price), 0);
+    return cartItems.reduce((total, item) => total + parseFloat(item.price * item.quantity), 0);
   };
 
   const handleRemove = (productobj) => {
-    // Implement the logic to reject the request
-    axios.post(`http://localhost:4000/user-api/remove-from-cart`, {
-      productobj: productobj,
-      username: userobj.username
-    })
-    .then(response => {
-      // Request rejected successfully, you can update the state or perform any necessary actions
-      // Reload the requests after rejecting if needed
-      alert("removed successfully");
-      setCartItems(response.data.payload);
-      
-    })
-    .catch(error => {
-      console.error('Error removing item:', error);
-    });
+   
+    axios
+      .post(`http://localhost:4000/user-api/remove-from-cart`, {
+        productobj: productobj,
+        username: userobj.username,
+      })
+      .then((response) => {
+        setCartItems(response.data.payload);
+        setTotalItems(response.data.payload.reduce((total, item) => total + item.quantity, 0));
+      })
+      .catch((error) => {
+        console.error('Error removing item:', error);
+      });
+  };
+
+  const handleQuantityChange = (productobj, newQuantity) => {
+    const updatedCart = [...cartItems];
+    const productIndex = updatedCart.findIndex((item) => item._id === productobj._id);
+
+    if (productIndex !== -1) {
+      if (newQuantity <= 0) {
+        updatedCart.splice(productIndex, 1);
+      } else {
+        updatedCart[productIndex].quantity = newQuantity;
+      }
+
+      setCartItems(updatedCart);
+      setTotalItems(updatedCart.reduce((total, item) => total + item.quantity, 0));
+
+      axios
+        .post(`http://localhost:4000/user-api/update-cart`, {
+          cartItems: updatedCart,
+          username: userobj.username,
+        })
+        .then((response) => {
+          // alert("Quantity updated successfully");
+        })
+        .catch((error) => {
+          console.error('Error updating quantity:', error);
+        });
+    }
   };
 
   const handleBuyNow = (cartItems) => {
-    // Implement the logic to accept the request
-    axios.post("http://localhost:4000/user-api/buy-now", {
-      cartItems:cartItems,
-      username: userobj.username
-    })
-    .then(response => {
-      // Request accepted successfully, you can update the state or perform any necessary actions
-      // Reload the requests after accepting if needed
-      setCartItems(response.data.payload);
-      alert("order placed successfully");
-      
-    })
-    .catch(error => {
-      console.error('Error occured:', error);
-    });
+    const orderItems = cartItems.map((item) => ({
+      ...item,
+      quantity: item.quantity, 
+    }));
+
+    axios
+      .post('http://localhost:4000/user-api/buy-now', {
+        cartItems: orderItems,
+        username: userobj.username,
+      })
+      .then((response) => {
+        setCartItems(response.data.payload);
+        setTotalItems(0); // Reset the total number of items
+        // alert("Order placed successfully");
+        navigate('/userdashboard/orders');
+      })
+      .catch((error) => {
+        console.error('Error occurred:', error);
+      });
   };
-  
 
   return (
     <div className="cart-container">
@@ -73,11 +111,24 @@ function Cart() {
         ) : (
           cartItems.map((item) => (
             <div key={item._id} className="cart-item">
-              <img src={item.imgurl} alt={item.productname} />
-              <h2>{item.productname}</h2>
-              <p>Price: ₹{item.price}</p>
-              <button className="remove" onClick={() => handleRemove(item)}>remove</button>
-              {/* Add more item details here */}
+              <div className="cart-item-image">
+                <img src={item.imgurl} alt={item.productname} />
+              </div>
+              <div className="cart-item-details">
+                <h2>{item.productname}</h2>
+                <p>Price: ₹{item.price}</p>
+                <div className="quantity">
+                  <button onClick={() => handleQuantityChange(item, item.quantity - 1)} primary> <b>-</b> </button>
+                    
+                  
+                  <span >{item.quantity}</span>
+
+                  <button onClick={() => handleQuantityChange(item, item.quantity + 1)}> <b>+</b>  </button>
+                </div>
+                <button className="remove" onClick={() => handleRemove(item)}>
+                  Remove
+                </button>
+              </div>
             </div>
           ))
         )}
@@ -86,14 +137,23 @@ function Cart() {
       {cartItems.length > 0 && (
         <div className="billing-summary">
           <h2>Billing Summary</h2>
-          <p>Total Items: {cartItems.length}</p>
-         
-          <p>Total Price: ₹{calculateTotal()}</p>
-          
-          <button className="buy-now-button" onClick={()=>handleBuyNow(cartItems)}>Buy Now</button>
+          <div className="summary-item">
+            <p>Total Items: {totalItems}</p>
+          </div>
+          <div className="summary-item">
+            <p>Total Price: ₹{calculateTotal()}</p>
+          </div>
+          <div className="summary-item">
+            <p>Delivery Fee: ₹50</p> 
+          </div>
+          <div className="summary-item">
+            <p>Total Amount: ₹{calculateTotal() + 50}</p>
+          </div>
+          <button className="buy-now-button" onClick={() => handleBuyNow(cartItems)}>
+            Place Order
+          </button>
         </div>
       )}
-      
     </div>
   );
 }

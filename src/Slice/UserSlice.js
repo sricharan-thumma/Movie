@@ -3,17 +3,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
-//make http post req to login user
+
 
 export const userLogin=createAsyncThunk('loginuser',async(usercred,thunkApi)=>{
     let response=await axios.post('http://localhost:4000/user-api/login',usercred);
     let data=response.data;
     
     
-    // let navigate=useNavigate();
+   
     if(data.message==='login success')
     {
-        //local storage token
+        
         localStorage.setItem("token",data.payload)
         // navigate('/userdashboard')
         return data.userObj;
@@ -52,18 +52,18 @@ let userSlice=createSlice({
     },
     reducers:{
         clearLoginStatus:(state)=>{
-            // console.log("he;;       ")
+            
             state.isSuccess=false;
             state.userobj=null;
             state.isError=false;
             state.errMsg='';
-            // console.log(state)
+            
             return state;
         }
     },
     extraReducers:{
 
-        //  track life cycle promise returned by createasyncTHunk function
+        
         [userLogin.pending]:(state,action)=>{
             state.isLoading=true;
         },

@@ -5,8 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import { useSelector } from 'react-redux';
 import './Admindashboard.css';
 import { useNavigate, Outlet } from 'react-router-dom';
-import { FaHome, FaUser, FaUsers, FaInfoCircle } from 'react-icons/fa'; // Import icons from react-icons
-
+import { FaHome, FaUser, FaUsers, FaInfoCircle } from 'react-icons/fa'; 
 function Admindashboard() {
   const { userobj, isSuccess } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -39,7 +38,7 @@ function Admindashboard() {
         </Nav>
       </div>
       <div className="profile-content">
-        {/* Use React Router's Outlet to render nested routes */}
+       
         <Outlet />
       </div>
     </div>

@@ -23,7 +23,7 @@ import AdminLogin from './components/Login/AdminLogin/AdminLogin';
 import Admindashboard from './components/AdminDashboard/Admindashboard';
 import AddProducts from './components/AdminDashboard/AddProducts';
 import ViewProducts from './components/AdminDashboard/ViewProducts';
-import Product from './components/Products/Product';
+
 import { useEffect } from 'react';
 import { userLogin } from './Slice/UserSlice';
 import { adminLogin } from './Slice/AdminSlice';
@@ -31,7 +31,9 @@ import { rehydrateUser } from './Slice/Rehydrateuser';
 import ProductsList from './components/userdashboard/ProductsList';
 import Cart from './components/userdashboard/Cart';
 import Orders from './components/userdashboard/Orders';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
+import PreviousOrders from './components/userdashboard/PreviousOrders';
 
 function App() {
   let { userobj, isSuccess } = useSelector((state) => state.user);
@@ -45,15 +47,7 @@ useEffect(() => {
 }, [dispatch])
   const adminToken = localStorage.getItem('token');
 
-  // When the app loads, check for user and admin tokens and try to authenticate
-  // useEffect(() => {
-  //   if (userToken) {
-  //     dispatch(userLogin({ token: userToken }));
-  //   }
-  //   if (adminToken) {
-  //     dispatch(adminLogin({ token: adminToken }));
-  //   }
-  // }, [dispatch, userToken, adminToken]);
+  
 
   const userLogout = () => {
     localStorage.clear();
@@ -78,41 +72,46 @@ useEffect(() => {
       
       <Navbar expand="lg" className="navbar-transparent">
         <Container>
-          <Navbar.Brand href="#home">Z-Fasio</Navbar.Brand>
+          <Navbar.Brand href="#home">The Fashion Store</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="justify-content-end">
-            <Nav fill variant="pills" className="ml-auto">
-              {shouldDisplayHome && (
-              <>
-              <NavLink className="nav-link" to="/">
-                Home
-              </NavLink>
-              <NavLink className="nav-link" to="/signup">
-                Signup
-              </NavLink>
-              <NavLink className="nav-link" to="/adminsignup">
-                Admin
-              </NavLink>
-              <NavLink className="nav-link" to="/login">
-                Login
-              </NavLink>
-              </>
-              )}
-              { shouldDisplayUserLogout &&(
-                <>
-                <NavLink className="nav-link" to="/productslist">
-                Home
-              </NavLink>
-              <NavLink className="nav-link" to="/userdashboard/cart">
-                Cart
-              </NavLink>
-                <NavDropdown title={userobj ? userobj.username : 'temp'} id="basic-nav-dropdown">
-                <NavDropdown.Item as={NavLink} to="/Userdashboard/userprofile" >Profile</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item onClick={userLogout}>Logout</NavDropdown.Item>
-              </NavDropdown>
-                </>
-              )}
+            <Nav  className="ml-auto">
+                            {shouldDisplayHome && (
+                  <>
+                    <NavLink className="nav-link" to="/">
+                      Home
+                    </NavLink>
+                    <NavLink className="nav-link" to="/signup">
+                      <FontAwesomeIcon icon={faUser} /> Signup
+                    </NavLink>
+                    {/* <NavLink className="nav-link" to="/adminsignup">
+                      <FontAwesomeIcon icon={faUser} /> Admin
+                    </NavLink> */}
+                    <NavLink className="nav-link" to="/login">
+                      <FontAwesomeIcon icon={faUser} /> Login
+                    </NavLink>
+                  </>
+                )}
+
+                {shouldDisplayUserLogout && (
+                  <>
+                    <NavLink className="nav-link" to="/productslist">
+                       Home
+                    </NavLink>
+                    <NavLink className="nav-link" to="/userdashboard/cart">
+                      <FontAwesomeIcon icon={faShoppingCart} /> Cart
+                    </NavLink>
+                    
+                    <NavDropdown title={userobj ? userobj.username : 'temp'} id="basic-nav-dropdown">
+                      <NavDropdown.Item as={NavLink} to="/Userdashboard/userprofile">
+                      <FontAwesomeIcon icon={faUser} />  Profile
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item onClick={userLogout}>Logout</NavDropdown.Item>
+                    </NavDropdown>
+                  </>
+                )}
+
               { shouldDisplayadminLogout  && (
                   <>
                   <NavDropdown title={adminobj ? adminobj.username : 'temp'} id="basic-nav-dropdown">
@@ -133,10 +132,11 @@ useEffect(() => {
       <Route path="/login" element={<Login />} />
       <Route path="/adminlogin" element={<AdminLogin />} />
       <Route path='/adminsignup' element={<AdminSignup/>}/>
-      <Route path='/product/:productid' element={<Product/>}/>
+     
       <Route path='/productslist' element={<ProductsList/>}/>
       <Route path='/userdashboard' element={<Userdashboard/>}>
           <Route path='userprofile' element={<UserProfile/>}/>
+          <Route path='previousorders' element={<PreviousOrders/>}/>
           <Route path='cart' element={<Cart/>}/>
           <Route path='orders' element={<Orders/>}/>
           <Route path='udatedetails' element={<Updatedetails/>}/>

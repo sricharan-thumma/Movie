@@ -28,7 +28,7 @@ function Updatedetails() {
 
     return (
         <div>
-            {/* Display existing user details */}
+           
             <Form>
                 <Form.Group controlId="email">
                     <Form.Label>Email</Form.Label>
