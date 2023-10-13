@@ -34,12 +34,22 @@ Admin Page to add products :
 
 ![admin page to add products](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/e81faafa-dda4-4bd8-b5cb-a5adabcbc61c)
 
-Admin Page to remove products :
 
-![admi n remove](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/10ffe0bb-1b41-438b-b835-a5a35ae4c72a)
 
 Home Page conataining products , added to cart option,filter options
 ![Screenshot 2023-10-14 040557](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/4a4428f1-39fa-4469-95a8-ee0a3428fc9e)
 
 Dynamic shopping cart that displays the total price, and allows for quantity adjustments and place order option
 ![Screenshot 2023-10-14 041114](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/1b858926-d2a4-4a54-a852-255f5c11b9de)
+
+
+Order page where order details are displayed :
+
+![Screenshot 2023-10-14 041900](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/5d328f9f-4208-4c3a-a866-dd5c0d626a88)
+
+Orders History Page with some Analytics on previously placed orders :
+![Screenshot 2023-10-14 042712](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/0f6431d5-d3b0-4d83-8ef8-ffe21f3f4a0c)
+
+Admin Page to remove products :
+
+![admi n remove](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/10ffe0bb-1b41-438b-b835-a5a35ae4c72a)
