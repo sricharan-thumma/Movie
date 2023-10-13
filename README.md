@@ -40,3 +40,6 @@ Admin Page to remove products :
 
 Home Page conataining products , added to cart option,filter options
 ![Screenshot 2023-10-14 040557](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/4a4428f1-39fa-4469-95a8-ee0a3428fc9e)
+
+Dynamic shopping cart that displays the total price, and allows for quantity adjustments. ![image](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/0f1b0bee-56bb-4821-ba7d-82b3928982d7)
+
