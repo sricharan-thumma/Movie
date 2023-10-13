@@ -13,4 +13,7 @@ In the second terminal, make sure you are still in the same folder as before.
 
 In the second terminal, type the following command and press Enter: "npm start".
 
-This will navigate yoy to the web browser url "http://localhost:3000".
+This will navigate you to the web browser url "http://localhost:3000".
+
+Home Page:
+![Homepage](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/df031f38-1453-4b33-82d5-c815c997333d)
