@@ -180,6 +180,75 @@ Userapp.get('/get-cart', expressAsyncHandler(async (request, response) => {
       return response.status(500).send({ message: 'Internal server error' });
     }
   }));
+
+  Userapp.post('/remove-from-cart', expressAsyncHandler(async (request, response) => {
+    try {
+        const usercollection = request.app.get("usercollection");
+        const { productobj,username } = request.body;
+
+        // Find the tutor document
+        const user = await usercollection.findOne({ username: username });
+
+        if (!user) {
+            return response.status(404).send({ message: "user not found" });
+        }
+
+        // Check if the student's username is in the tutor's Requests array
+        const itemIndex = user.Cart.findIndex(item => item._id === productobj._id);
+        if (itemIndex === -1) {
+            return response.status(400).send({ message: "item not found" });
+        }
+
+        // Remove the student's username from the Requests array
+        user.Cart.splice(itemIndex, 1);
+
+        // Update the tutor document
+        await usercollection.updateOne({ username: username }, { $set: { Cart: user.Cart } });
+
+        return response.send({ message: "Removed successfully",payload:user.Cart});
+    } catch (error) {
+        console.error(error);
+        return response.status(500).send({ message: "Internal server error" });
+    }
+}));
+
+Userapp.post('/buy-now', expressAsyncHandler(async (request, response) => {
+    try {
+      const usercollection = request.app.get("usercollection");
+      
+      const { cartItems, username } = request.body;
+  
+      const user = await usercollection.findOne({ username: username });
+  
+      if (!user) {
+        return response.status(404).send({ message: "User not found" });
+      }
+  
+      // Check if the user has an Orders array. If not, create it.
+      if (!user.Orders) {
+        user.Orders = [];
+      }
+      
+      // Push the items from cartItems into Orders
+      user.Orders.push(...cartItems);
+  
+      // Empty the cartItems array
+      user.cartItems = [];
+  
+      // Update the user document in the database
+      await usercollection.updateOne(
+        { username: username },
+        { $set: { Orders: user.Orders, Cart: user.cartItems } }
+      );
+  
+      return response.send({ message: "Order accepted successfully", payload: user.Cart });
+    } catch (error) {
+      console.error(error);
+      return response.status(500).send({ message: "Internal server error" });
+    }
+  }));
+  
+
   
   
 

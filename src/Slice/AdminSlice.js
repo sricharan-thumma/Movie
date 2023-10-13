@@ -74,6 +74,8 @@ let adminSlice=createSlice({
             state.isError=false;
             state.isSuccessadmin=true;
             state.errMsg="b"
+
+        localStorage.setItem('admintoken', storedAdminToken);
         },
         [adminLogin.rejected]:(state,action)=>{
             state.isError=true;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUserDetails } from '../../Slice/UserSlice'; 
+// import { updateUserDetails } from '../../Slice/UserSlice'; 
 import { Button, Form } from 'react-bootstrap';
 
 function Updatedetails() {
@@ -23,7 +23,7 @@ function Updatedetails() {
             profileImg: selectedImage,
         };
 
-        dispatch(updateUserDetails(updatedUser));
+        // dispatch(updateUserDetails(updatedUser));
     };
 
     return (

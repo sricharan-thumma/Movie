@@ -27,18 +27,22 @@ import Product from './components/Products/Product';
 import { useEffect } from 'react';
 import { userLogin } from './Slice/UserSlice';
 import { adminLogin } from './Slice/AdminSlice';
+import { rehydrateUser } from './Slice/Rehydrateuser';
 import ProductsList from './components/userdashboard/ProductsList';
 import Cart from './components/userdashboard/Cart';
+import Orders from './components/userdashboard/Orders';
 
 
 function App() {
   let { userobj, isSuccess } = useSelector((state) => state.user);
   let { adminobj, isSuccessadmin } = useSelector((state) => state.admin);
-
-  let dispatch = useDispatch()
-
-  let navigate = useNavigate();
-  const userToken = localStorage.getItem('token');
+console.log(userobj); 
+const dispatch = useDispatch();
+const navigate=useNavigate();
+useEffect(() => {
+  // Dispatch the rehydrateUser action when the app loads
+  dispatch(rehydrateUser());
+}, [dispatch])
   const adminToken = localStorage.getItem('token');
 
   // When the app loads, check for user and admin tokens and try to authenticate
@@ -134,6 +138,7 @@ function App() {
       <Route path='/userdashboard' element={<Userdashboard/>}>
           <Route path='userprofile' element={<UserProfile/>}/>
           <Route path='cart' element={<Cart/>}/>
+          <Route path='orders' element={<Orders/>}/>
           <Route path='udatedetails' element={<Updatedetails/>}/>
           <Route path="" element={<Navigate to="userprofile" replace />} />
       </Route>

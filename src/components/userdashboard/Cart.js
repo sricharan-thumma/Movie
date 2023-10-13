@@ -26,6 +26,42 @@ function Cart() {
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => total + parseFloat(item.price), 0);
   };
+
+  const handleRemove = (productobj) => {
+    // Implement the logic to reject the request
+    axios.post(`http://localhost:4000/user-api/remove-from-cart`, {
+      productobj: productobj,
+      username: userobj.username
+    })
+    .then(response => {
+      // Request rejected successfully, you can update the state or perform any necessary actions
+      // Reload the requests after rejecting if needed
+      alert("removed successfully");
+      setCartItems(response.data.payload);
+      
+    })
+    .catch(error => {
+      console.error('Error removing item:', error);
+    });
+  };
+
+  const handleBuyNow = (cartItems) => {
+    // Implement the logic to accept the request
+    axios.post("http://localhost:4000/user-api/buy-now", {
+      cartItems:cartItems,
+      username: userobj.username
+    })
+    .then(response => {
+      // Request accepted successfully, you can update the state or perform any necessary actions
+      // Reload the requests after accepting if needed
+      setCartItems(response.data.payload);
+      alert("order placed successfully");
+      
+    })
+    .catch(error => {
+      console.error('Error occured:', error);
+    });
+  };
   
 
   return (
@@ -40,6 +76,7 @@ function Cart() {
               <img src={item.imgurl} alt={item.productname} />
               <h2>{item.productname}</h2>
               <p>Price: ₹{item.price}</p>
+              <button className="remove" onClick={() => handleRemove(item)}>remove</button>
               {/* Add more item details here */}
             </div>
           ))
@@ -50,10 +87,13 @@ function Cart() {
         <div className="billing-summary">
           <h2>Billing Summary</h2>
           <p>Total Items: {cartItems.length}</p>
+         
           <p>Total Price: ₹{calculateTotal()}</p>
-          <button className="buy-now-button">Buy Now</button>
+          
+          <button className="buy-now-button" onClick={()=>handleBuyNow(cartItems)}>Buy Now</button>
         </div>
       )}
+      
     </div>
   );
 }

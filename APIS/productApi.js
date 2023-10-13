@@ -16,11 +16,16 @@ productApp.use(exp.json())
 //get all products 
 productApp.get('/getproducts', expressAsyncHandler(async (request, response) => {
     //get productcollectionObject
+    const { category } = request.query;
     let productCollection = request.app.get("productcollection")
     //read all products
-    let products = await productCollection.find().toArray()
+    let filteredProducts = await productCollection.find().toArray()
+    if (category) {
+        // Filter products based on the category query parameter
+        filteredProducts = filteredProducts.filter((product) => product.category === category);
+      }
     //send response
-    response.send({ message: 'All products', payload: products })
+    response.send({ message: 'All products', payload: filteredProducts })
 }))
 
 

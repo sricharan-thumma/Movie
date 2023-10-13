@@ -74,6 +74,8 @@ let userSlice=createSlice({
             state.isError=false;
             state.isSuccess=true;
             state.errMsg="b"
+
+            localStorage.setItem('token', action.pa);
         },
         [userLogin.rejected]:(state,action)=>{
             state.isError=true;

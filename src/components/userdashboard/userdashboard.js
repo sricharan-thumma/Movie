@@ -21,7 +21,7 @@ function Userdashboard() {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link onClick={() => navigate('/dashboard/profileparent/tutorhome')}>
+            <Nav.Link onClick={() => navigate('/userdashboard/orders')}>
               <FaHome /> Orders
             </Nav.Link>
           </Nav.Item>
