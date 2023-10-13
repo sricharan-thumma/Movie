@@ -53,3 +53,6 @@ Orders History Page with some Analytics on previously placed orders :
 Admin Page to remove products :
 
 ![admi n remove](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/10ffe0bb-1b41-438b-b835-a5a35ae4c72a)
+
+userProfile with shopping analytics:
+![Screenshot 2023-10-14 050447](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/e6d4fc1a-44ca-401a-bbfa-38bf9acc76fa)
