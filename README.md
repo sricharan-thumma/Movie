@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+A web application built using MongoDB, React, NodeJS and JavaScript that provides a user-friendly interface where customers can browse through various eco-friendly clothing items, filter products by different criteria, and add items to their shopping cart and place orders.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+To run this project, follow these steps:
 
-In the project directory, you can run:
+Open two terminals.
 
-### `npm start`
+In the first terminal, navigate to the folder that includes these files.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In the first terminal, type the following command and press Enter: "nodemon server" or "node server"(runs on the port 4000).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+In the second terminal, make sure you are still in the same folder as before.
 
-### `npm test`
+In the second terminal, type the following command and press Enter: "npm start".
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This will navigate you to the web browser url "http://localhost:3000".
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Home Page:
+![Homepage](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/df031f38-1453-4b33-82d5-c815c997333d)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+SignUp Page:
+![Signuppage](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/5890407a-0d7f-4055-928e-32b784a93ce3)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Login Page :
+![LoginPage](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/69ac9a27-70ff-40d3-a099-b12eedcc8a3e)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+Admin Page to add products :
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![admin page to add products](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/e81faafa-dda4-4bd8-b5cb-a5adabcbc61c)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Home Page conataining products , added to cart option,filter options
+![Screenshot 2023-10-14 040557](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/4a4428f1-39fa-4469-95a8-ee0a3428fc9e)
 
-### Analyzing the Bundle Size
+Dynamic shopping cart that displays the total price, and allows for quantity adjustments and place order option
+![Screenshot 2023-10-14 041114](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/1b858926-d2a4-4a54-a852-255f5c11b9de)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+Order page where order details are displayed :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Screenshot 2023-10-14 041900](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/5d328f9f-4208-4c3a-a866-dd5c0d626a88)
 
-### Advanced Configuration
+Orders History Page with some Analytics on previously placed orders :
+![Screenshot 2023-10-14 042712](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/0f6431d5-d3b0-4d83-8ef8-ffe21f3f4a0c)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Admin Page to remove products :
 
-### Deployment
+![admi n remove](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/10ffe0bb-1b41-438b-b835-a5a35ae4c72a)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+userProfile with shopping analytics:
+![Screenshot 2023-10-14 050447](https://github.com/onnerivamshi139/VNRVignanaJyothi_20071A12A0_VamshiKrishna_Onneri_CCC_EComm/assets/100712620/e6d4fc1a-44ca-401a-bbfa-38bf9acc76fa)
