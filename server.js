@@ -16,7 +16,7 @@ const Productapp = require('./APIS/productApi')
 
 const Adminapp=require('./APIS/adminApi')
 
-const DBurl=process.env.REACT_APP_DATABASE_CONNECTION_URL;
+const DBurl="mongodb+srv://vamshi26:vamshi%4026@cluster0.ojkg9z7.mongodb.net/?retryWrites=true&w=majority";
 mclient.connect(DBurl)
 .then((client)=>{
     let dbobj=client.db("zebu")
