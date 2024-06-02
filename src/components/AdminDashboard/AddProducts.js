@@ -38,13 +38,13 @@ function AddProducts() {
 
         <div className="formsize ">
           <div >
-            <h1 className="mb-4">Add Product</h1>
+            <h1 className="mb-4">Add MOvie</h1>
 
           </div>
           <Form onSubmit={handleSubmit(onFormSubmit)}>
             {/* Product */}
             <Form.Group className="pt-2 pb-2">
-              <Form.Control type="text" placeholder="Product Name" {...register("productname", { required: true })} />
+              <Form.Control type="text" placeholder="Movie Name" {...register("productname", { required: true })} />
               {/* validation error message for username */}
               {errors.username && (
                 <p className="text-danger">* Product name required</p>
@@ -59,15 +59,16 @@ function AddProducts() {
                 <p className="text-danger">* Product Type required</p>
               )}
             </Form.Group>
-
-            {/* Product */}
             <Form.Group className="pt-2 pb-2">
-              <Form.Control type="text" placeholder="Product Brand" {...register("Brand", { required: true })} />
+              <Form.Control type="text" placeholder="Description" {...register("Description", { required: true })} />
               {/* validation error message for username */}
-              {errors.Brand && (
-                <p className="text-danger">* Product Brand is required</p>
+              {errors.Type && (
+                <p className="text-danger">* Product Description required</p>
               )}
             </Form.Group>
+
+            {/* Product */}
+            
             <Form.Group className="pt-2 pb-2">
               <Form.Control type="text" placeholder="category" {...register("category", { required: true })} />
               {/* validation error message for username */}
@@ -76,23 +77,9 @@ function AddProducts() {
               )}
             </Form.Group>
 
-            {/* Product */}
-            <Form.Group className="pt-2 pb-2">
-              <Form.Control type="text" placeholder="Product price" {...register("price", { required: true })} />
-              {/* validation error message for username */}
-              {errors.price && (
-                <p className="text-danger">* Product name required</p>
-              )}
-            </Form.Group>
+            
 
-            {/* Product */}
-            <Form.Group className="pt-2 pb-2">
-              <Form.Control type="text" placeholder="Product color" {...register("color", { required: true })} />
-              {/* validation error message for username */}
-              {errors.color && (
-                <p className="text-danger">* Product color required</p>
-              )}
-            </Form.Group>
+           
 
             {/* Product */}
             <Form.Group className="pt-2 pb-2">

@@ -17,7 +17,7 @@ function Userdashboard() {
     <div className="profile-container-nav">
       <div className="profile-sidebar">
         <Nav className="flex-column">
-        <Nav.Item>
+        {/* <Nav.Item>
             <Nav.Link onClick={() => navigate('/userdashboard/cart')}>
             <FontAwesomeIcon icon={faShoppingCart} /> Cart
             </Nav.Link>
@@ -33,7 +33,7 @@ function Userdashboard() {
             <FontAwesomeIcon icon={faListAlt} /> Order History
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item></Nav.Item>
+          <Nav.Item></Nav.Item> */}
           {/* <Nav.Item>
             <Nav.Link onClick={() => navigate('/dashboard/profileparent/extradetails')}>
               <FaInfoCircle /> Extra Details

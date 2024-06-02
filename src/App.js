@@ -72,15 +72,13 @@ useEffect(() => {
       
       <Navbar expand="lg" className="navbar-transparent">
         <Container>
-          <Navbar.Brand href="#home">The Fashion Store</Navbar.Brand>
+          <Navbar.Brand href="#home">Movie Library</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="justify-content-end">
             <Nav  className="ml-auto">
                             {shouldDisplayHome && (
                   <>
-                    <NavLink className="nav-link" to="/">
-                      Home
-                    </NavLink>
+                    
                     <NavLink className="nav-link" to="/signup">
                       <FontAwesomeIcon icon={faUser} /> Signup
                     </NavLink>
@@ -99,7 +97,7 @@ useEffect(() => {
                        Home
                     </NavLink>
                     <NavLink className="nav-link" to="/userdashboard/cart">
-                      <FontAwesomeIcon icon={faShoppingCart} /> Cart
+                      Movies List
                     </NavLink>
                     
                     <NavDropdown title={userobj ? userobj.username : 'temp'} id="basic-nav-dropdown">

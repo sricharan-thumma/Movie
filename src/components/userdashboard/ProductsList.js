@@ -11,13 +11,14 @@ import { useNavigate } from "react-router-dom";
 function ProductsList() {
   const [products, setProducts] = useState([]);
   const { userobj } = useSelector((state) => state.user);
-    const navigate=useNavigate();
+  const navigate = useNavigate();
   const [categoryFilters, setCategoryFilters] = useState({
-    Men: false,
-    Women: false,
-    Kids: false,
+    love: false,
+    comedy: false,
+    thriller: false,
   });
 
+  const [searchTerm, setSearchTerm] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
@@ -35,23 +36,33 @@ function ProductsList() {
     });
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   useEffect(() => {
     filterProducts();
-  }, [categoryFilters, products]);
+  }, [categoryFilters, searchTerm, products]);
 
   const filterProducts = () => {
-    const filtered = products.filter((product) => {
-      if (categoryFilters.Men && product.category === 'Men') {
-        return true;
-      }
-      if (categoryFilters.Women && product.category === 'Women') {
-        return true;
-      }
-      if (categoryFilters.Kids && product.category === 'Kids') {
-        return true;
-      }
-      return false;
-    });
+    let filtered = products;
+
+    if (searchTerm) {
+      filtered = filtered.filter((product) =>
+        product.productname.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    const activeCategories = Object.keys(categoryFilters).filter(
+      (category) => categoryFilters[category]
+    );
+
+    if (activeCategories.length > 0) {
+      filtered = filtered.filter((product) =>
+        activeCategories.includes(product.category)
+      );
+    }
+
     setFilteredProducts(filtered);
   };
 
@@ -63,7 +74,7 @@ function ProductsList() {
         userobj: userobj,
       })
       .then((response) => {
-         alert("Added successfully");
+        alert("Added successfully");
         navigate('/userdashboard/cart')
       })
       .catch((error) => {
@@ -77,6 +88,7 @@ function ProductsList() {
 
   return (
     <div className="products-container">
+      
       <div className="accordion-container">
         <Accordion defaultActiveKey="0" flush>
           <Accordion.Item eventKey="0">
@@ -94,46 +106,58 @@ function ProductsList() {
               ))}
             </Accordion.Body>
           </Accordion.Item>
+        <div className="search-bar">
+        
+        <Form.Group controlId="searchProduct">
+          
+          <Form.Control
+            type="text"
+            placeholder="search movie....."
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </Form.Group>
+      </div>
         </Accordion>
       </div>
       
-        <Container className="w-85">
-          <div className="row">
-            {filteredProducts.length > 0
-              ? filteredProducts.map((product) => (
-                  <div key={product.id} className="product col-md-4 p-4">
-                    <img className="image" src={product.imgurl} alt="Product image" style={{ width: '100%' }}/>
-                    <div className="middle">
-                      <h5 className="productname">{product.productname}</h5>
-                      <h4 className="brand">{product.Brand}</h4>
-                      <h6 className="price">₹{product.price}</h6>
-                      <div className="button-container">
-                        <Button className="button" onClick={() => AddtoCart(product)}>
-                          Add to Cart
-                        </Button>
-                        
-                      </div>
+      <Container className="w-85">
+        <div className="row">
+          {filteredProducts.length > 0
+            ? filteredProducts.map((product) => (
+                <div key={product.id} className="product col-md-4 p-4">
+                  <img className="image" src={product.imgurl} alt="Product image" style={{ width: '100%' }}/>
+                  <div className="middle">
+                    <h5 className="productname">{product.productname}</h5>
+                    <p className="brand">{product.Description}</p>
+                    
+                    <div className="button-container">
+                      <Button className="button" onClick={() => AddtoCart(product)}>
+                        watch Later
+                      </Button>
+                      
                     </div>
                   </div>
-                ))
-              : products.map((product) => (
-                  <div key={product.id} className="product col-md-4 p-4">
-                    <img className="image" src={product.imgurl} alt="Product image" />
-                    <div className="middle">
-                      <h5 className="productname">{product.productname}</h5>
-                      <h4 className="brand">{product.Brand}</h4>
-                      <h6 className="price">₹{product.price}</h6>
-                      <div className="button-container">
-                        <Button className="button m-auto" onClick={() => AddtoCart(product)}>
-                          Add to Cart
-                        </Button>
-                        
-                      </div>
+                </div>
+              ))
+            : products.map((product) => (
+                <div key={product.id} className="product col-md-4 p-4">
+                  <img className="image" src={product.imgurl} alt="Product image" />
+                  <div className="middle">
+                    <h5 className="productname">{product.productname}</h5>
+                    <h4 className="brand">{product.Brand}</h4>
+                   
+                    <div className="button-container">
+                      <Button className="button m-auto" onClick={() => AddtoCart(product)}>
+                        Watch Later
+                      </Button>
+                      
                     </div>
                   </div>
-                ))}
-          </div>
-        </Container>
+                </div>
+              ))}
+        </div>
+      </Container>
       
     </div>
   );

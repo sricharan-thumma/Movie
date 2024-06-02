@@ -23,7 +23,7 @@ function AdminLogin() {
   let dispatch = useDispatch();
 
   const onFormSubmit = (userCredObj) => {
-    dispatch(adminLogin(userCredObj));
+    dispatch(adminLogin(userCredObj)); 
   };
   if (isSuccessadmin === true) {
     navigate('/admindashboard');

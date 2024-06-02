@@ -62,9 +62,9 @@ const ViewProducts = () => {
                 <h5 className="fw-bold">{product.productname}</h5>
                 <h4 className="fw-bold">{product.Brand}</h4>
                 <br />
-                <h6 className="fw-bold">₹{product.price}</h6>
+                
                 <button className="but fw-bold" type="button" onClick={() => remove(product)} >
-                  Remove Product
+                  Remove Movie
                 </button>
                 
               </div>

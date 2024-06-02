@@ -93,3 +93,24 @@ brand {
   background-color: #0056b3;
 }
 
+.search-bar {
+  margin: 20px;
+}
+
+.search-bar .form-control {
+  background-color: #333; /* Dark background */
+  border: 1px solid #555; /* Dark border */
+  color:white; /* Light color for text */
+  padding: 10px;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.search-bar .form-control::placeholder {
+  color: #888; /* Darkened placeholder text */
+}
+
+.search-bar .form-control:focus {
+  border-color: #888; /* Darker border on focus */
+  outline: none;
+}

@@ -104,7 +104,7 @@ function Cart() {
 
   return (
     <div className="cart-container">
-      <h1>Shopping Cart</h1>
+      <h1>Movies List</h1>
       <div className="cart-items">
         {cartItems.length === 0 ? (
           <p>No items added yet</p>
@@ -116,15 +116,15 @@ function Cart() {
               </div>
               <div className="cart-item-details">
                 <h2>{item.productname}</h2>
-                <p>Price: ₹{item.price}</p>
-                <div className="quantity">
+               
+                {/* <div className="quantity">
                   <button onClick={() => handleQuantityChange(item, item.quantity - 1)} primary> <b>-</b> </button>
                     
                   
                   <span >{item.quantity}</span>
 
                   <button onClick={() => handleQuantityChange(item, item.quantity + 1)}> <b>+</b>  </button>
-                </div>
+                </div> */}
                 <button className="remove" onClick={() => handleRemove(item)}>
                   Remove
                 </button>
@@ -134,26 +134,7 @@ function Cart() {
         )}
       </div>
 
-      {cartItems.length > 0 && (
-        <div className="billing-summary">
-          <h2>Billing Summary</h2>
-          <div className="summary-item">
-            <p>Total Items: {totalItems}</p>
-          </div>
-          <div className="summary-item">
-            <p>Total Price: ₹{calculateTotal()}</p>
-          </div>
-          <div className="summary-item">
-            <p>Delivery Fee: ₹50</p> 
-          </div>
-          <div className="summary-item">
-            <p>Total Amount: ₹{calculateTotal() + 50}</p>
-          </div>
-          <button className="buy-now-button" onClick={() => handleBuyNow(cartItems)}>
-            Place Order
-          </button>
-        </div>
-      )}
+      
     </div>
   );
 }

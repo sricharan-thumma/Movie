@@ -14,31 +14,27 @@ function Admindashboard() {
     <div className="profile-container-nav">
       <div className="profile-sidebar">
         <Nav className="flex-column">
-          <Nav.Item>
+          {/* <Nav.Item>
             <Nav.Link onClick={() => navigate('/dashboard/profileparent/tutorhome')}>
               <FaHome /> Home
             </Nav.Link>
-          </Nav.Item>
+          </Nav.Item> */}
           <Nav.Item>
             <Nav.Link onClick={() => navigate('/admindashboard/addproducts')}>
-              <FaUser /> Add Products
+              <FaUser /> Add Movies
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link onClick={() => navigate('/admindashboard/viewproducts')}>
-              <FaUsers /> View products
+              <FaUsers /> View or delete movies
             </Nav.Link>
           </Nav.Item>
           <Nav.Item></Nav.Item>
-          <Nav.Item>
-            <Nav.Link onClick={() => navigate('/dashboard/profileparent/extradetails')}>
-              <FaInfoCircle /> Extra Details
-            </Nav.Link>
-          </Nav.Item>
+          
         </Nav>
       </div>
       <div className="profile-content">
-       
+       1
         <Outlet />
       </div>
     </div>
