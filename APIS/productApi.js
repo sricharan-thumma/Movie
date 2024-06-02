@@ -4,14 +4,10 @@ const productApp = exp.Router()
 
 const expressAsyncHandler = require('express-async-handler')
 const { v4: uuidv4 } = require('uuid');
-const unique=uuidv4().slice(0,8);
-
-
-
+const unique=uuidv4().slice(0,8):
 
 //to extract body of request obj(is a middleware)
 productApp.use(exp.json())
-
  
 productApp.get('/getproducts', expressAsyncHandler(async (request, response) => {
     
@@ -26,8 +22,6 @@ productApp.get('/getproducts', expressAsyncHandler(async (request, response) => 
 
     response.send({ message: 'All products', payload: filteredProducts })
 }))
-
-
 
 
 productApp.get('/getusers/:id',expressAsyncHandler(async(request,response)=>{
